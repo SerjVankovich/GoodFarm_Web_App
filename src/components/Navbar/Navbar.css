@@ -1,0 +1,36 @@
+.navbar-my {
+    background-color: #FFA726;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.brand {
+    font-size: xx-large;
+    color: #ffffff;
+
+}
+
+.brand:hover {
+    color: #dddddd;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.link {
+    font-size: medium;
+    color: #ffffff;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.link:hover {
+    color: #dddddd;
+    font-weight: bold;
+    text-decoration: none;
+
+}
+
+
+.navheight {
+    height: 4em;
+}
