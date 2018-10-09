@@ -1,49 +1,52 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {Col, Container, Jumbotron, Row} from 'reactstrap'
-import Set from './Set';
-import "./Sets.css"
-import Search from './Search'
+import "./CartObjs.css"
+import Search from '../Search/Search'
 import Loading from "../Loading/Loading";
 
-class Sets extends React.Component {
+class CartObjs extends React.Component {
     constructor() {
         super();
-        
+
         this.cartItems = [];
 
         this.state = {
-            sets: [],
+            objs: [],
             loading: true,
             cart: []
         };
 
         this.saveToCart = this.saveToCart.bind(this);
-        this.checkSetOnCart = this.checkSetOnCart.bind(this);
-        this.findSets = this.findSets.bind(this)
+        this.checkObjOnCart = this.checkObjOnCart.bind(this);
+        this.findObjs = this.findObjs.bind(this)
     }
 
     componentDidMount() {
-        fetch('http://localhost:3000/sets')
-        .then(response => response.json())
-        .then(body => this.setState({
-            sets: body,
-            loading: false
-        }))
-        .catch(err => console.error(err));
+        const { url } = this.props;
+        fetch(`http://localhost:3000/${url}`)
+            .then(response => response.json())
+            .then(body =>
+                this.setState({
+                    objs: body,
+                    loading: false
+                })
+            )
+            .catch(err => console.error(err));
 
         this.cartItems = JSON.parse(localStorage.getItem('cartItems'))
 
     }
 
-    findSets(value) {
-        fetch(`http://localhost:3000/sets?name=${value}`)
+    findObjs(value) {
+        const { url } = this.props;
+        fetch(`http://localhost:3000/${url}?name=${value}`)
             .then(response => response.json())
             .then(body => {
                 if (body.message === undefined) {
-                    this.setState({ sets: body, loading: false })
+                    this.setState({ objs: body, loading: false })
                 } else {
-                    this.setState({ sets: [], loading: false})
+                    this.setState({ objs: [], loading: false})
                 }
 
 
@@ -52,20 +55,20 @@ class Sets extends React.Component {
 
     }
 
-    saveToCart(set) {
+    saveToCart(obj) {
         if(this.cartItems === null) {
             this.cartItems = []
         }
-        if (!this.checkSetOnCart(set)) {
-            set.count = 1;
-            this.cartItems.push(set)
+        if (!this.checkObjOnCart(obj)) {
+            obj.count = 1;
+            this.cartItems.push(obj)
         }
-        
+
     }
 
-    checkSetOnCart(set) {
+    checkObjOnCart(obj) {
         return this.cartItems.some(cartItem => {
-            return set._id === cartItem._id;
+            return obj._id === cartItem._id;
         })
     }
 
@@ -74,19 +77,18 @@ class Sets extends React.Component {
     }
 
     render() {
-        const { sets, loading } = this.state;
+        const { objs, loading } = this.state;
         if (!loading) {
-            sets.forEach(set => console.log(set.image))
+            objs.forEach(obj => console.log(obj.image))
         }
-
         if (loading) {
             return (<Loading/>)
         }
 
-        if (sets.length === 0) {
+        if (objs.length === 0) {
             return (
                 <div>
-                    <Search findSets={this.findSets}/>
+                    <Search findObjs={this.findObjs}/>
                     <Container>
                         <Jumbotron className="NotFound">
                             <h2>Наборы не найдены :(</h2>
@@ -99,14 +101,15 @@ class Sets extends React.Component {
         }
         return (
             <div>
-                <Search findSets={this.findSets}/>
+                <Search findObjs={this.findObjs}/>
                 <Container className="table">
 
-                    {sets !== undefined &&
+                    {objs !== undefined &&
                     <Row>
-
-                        {sets.map((set, index) => (
-                            <Col key={index} md="4" sm="6" xs="12"> <Set saveToCart={this.saveToCart} set={set}/></Col>
+                        {objs.map((obj, index) => (
+                            <Col key={index} md="4" sm="6" xs="12">
+                                {React.createElement(this.props.component, {saveToCart: this.saveToCart, obj: obj}, this)}
+                            </Col>
                         ))}
                     </Row>}
                 </Container>
@@ -116,4 +119,4 @@ class Sets extends React.Component {
     }
 }
 
-export default withRouter(Sets);
+export default withRouter(CartObjs);

@@ -15,10 +15,7 @@ class Search extends React.Component {
 
     checkInput(event) {
         const value = event.target.value;
-
-        this.props.findSets(value);
-
-
+        this.props.findObjs(value);
         this.setState({ search: value})
 
 

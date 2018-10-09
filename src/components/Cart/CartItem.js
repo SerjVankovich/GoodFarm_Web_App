@@ -43,6 +43,9 @@ class CartItem extends React.Component {
 
     render() {
         const { set } = this.state;
+        if (!set.name) {
+            set.name = set.title
+        }
         return (
             <Card className="panel">
                 <CardImg className="img-rounded" src="https://esh-derevenskoe.ru/image/cache/catalog/set/1-340x180.jpg" />
