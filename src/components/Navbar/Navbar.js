@@ -13,7 +13,6 @@ import {Collapse,
   Nav,
   NavItem,
     NavbarBrand,
-    Container
 } from 'reactstrap';
 
 class App extends Component {
@@ -36,9 +35,9 @@ class App extends Component {
   render() {
     return (
       <div className="navbar-my">
-        <Navbar fixed light expand='md'>
-            <NavbarBrand>
-                <Link to="/" className='brand'><img src={psheno} alt="psheno"/>GoodFarm</Link>
+        <Navbar light expand='md'>
+            <NavbarBrand href="/">
+                <img src={psheno} alt="psheno"/><p className='brand'>GoodFarm</p>
             </NavbarBrand>
           <NavbarToggler onClick={this.collapse} />
           <Collapse isOpen={this.state.collapse} navbar >

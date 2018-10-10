@@ -9,7 +9,7 @@ import HomePage from './components/HomePage/HomePage';
 import './index.css'
 import Cart from './components/Cart/Cart';
 import CartObjs from "./components/CartObjs/CartObjs";
-import Milk from "./components/Milk/Milk";
+import CartObj from "./components/CartObj/CartObj";
 
 
 ReactDOM.render(
@@ -27,8 +27,14 @@ ReactDOM.render(
                 <Route path="/milk" component={
                     (props) => <CartObjs
                         {...props}
-                        component={Milk}
+                        component={CartObj}
                         url={"milk"}/>
+                } exact/>
+                <Route path="/veges&fruits" component={
+                    (props) => <CartObjs
+                        {...props}
+                        component={CartObj}
+                        url={"vegFruits"}/>
                 } exact/>
                 <Route path="/cart" component={Cart} exact/>
             </Switch>

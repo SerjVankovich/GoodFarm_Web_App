@@ -13,6 +13,8 @@ import {
     ModalHeader
 } from 'reactstrap';
 
+import {encode} from '../../helpers/encoder'
+
 class Set extends React.Component {
     constructor() {
         super();
@@ -28,16 +30,11 @@ class Set extends React.Component {
             modal: !this.state.modal
         })
     }
-    encode(data) {
-        const str = data.reduce(function(a,b){ return a+String.fromCharCode(b) },'');
-        return btoa(str).replace(/.{76}(?=.)/g,'$&\n');
-    }
-
     render() {
         const { obj } = this.props;
         let imageUrl;
         if (obj.image) {
-            imageUrl = "data:image/png;base64," + this.encode(obj.image.data);
+            imageUrl = "data:image/png;base64," + encode(obj.image.data);
         } else {
             imageUrl = ""
         }

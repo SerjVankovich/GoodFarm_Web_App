@@ -31,7 +31,7 @@ class CartItem extends React.Component {
 
     handleMinus() {
         const { set } = this.state;
-        if (!(set.count == 1)) {
+        if (!(set.count === 1)) {
             set.count--;
             this.setState({
                 set: set

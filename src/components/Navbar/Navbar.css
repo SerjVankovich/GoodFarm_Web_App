@@ -5,7 +5,8 @@
 }
 
 .brand {
-    font-size: xx-large;
+    display: inline;
+    font-size: larger;
     color: #ffffff;
 
 }

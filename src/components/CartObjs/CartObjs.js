@@ -14,12 +14,12 @@ class CartObjs extends React.Component {
         this.state = {
             objs: [],
             loading: true,
-            cart: []
+            cart: [],
         };
 
         this.saveToCart = this.saveToCart.bind(this);
         this.checkObjOnCart = this.checkObjOnCart.bind(this);
-        this.findObjs = this.findObjs.bind(this)
+        this.findObjs = this.findObjs.bind(this);
     }
 
     componentDidMount() {
@@ -33,9 +33,11 @@ class CartObjs extends React.Component {
                 })
             )
             .catch(err => console.error(err));
+        const cartItems = localStorage.getItem('cartItems');
 
-        this.cartItems = JSON.parse(localStorage.getItem('cartItems'))
-
+        if (cartItems.length !== 0) {
+            this.cartItems = JSON.parse(localStorage.getItem('cartItems'))
+        }
     }
 
     findObjs(value) {
@@ -78,9 +80,6 @@ class CartObjs extends React.Component {
 
     render() {
         const { objs, loading } = this.state;
-        if (!loading) {
-            objs.forEach(obj => console.log(obj.image))
-        }
         if (loading) {
             return (<Loading/>)
         }
@@ -108,7 +107,7 @@ class CartObjs extends React.Component {
                     <Row>
                         {objs.map((obj, index) => (
                             <Col key={index} md="4" sm="6" xs="12">
-                                {React.createElement(this.props.component, {saveToCart: this.saveToCart, obj: obj}, this)}
+                                {React.createElement(this.props.component, {saveToCart: this.saveToCart, obj: obj }, this)}
                             </Col>
                         ))}
                     </Row>}
