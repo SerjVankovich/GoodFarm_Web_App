@@ -7,6 +7,7 @@ import watermelon2 from "./imgs/watermelon2.png"
 import bread from "./imgs/bread.png"
 import ready from "./imgs/ready.png"
 import psheno from "./imgs/psheno.png"
+import map from './imgs/map-pin.svg'
 import {Collapse,
     Navbar,
   NavbarToggler,
@@ -56,6 +57,9 @@ class App extends Component {
                 </NavItem>
                 <NavItem>
                     <Link to="/bread" className="link"><img src={bread} alt="bread"/>Хлеб</Link>
+                </NavItem>
+                <NavItem>
+                    <Link to="/map" className="link"><img src={map} alt="map"/>Карта</Link>
                 </NavItem>
             </Nav>
           </Collapse>
