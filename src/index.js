@@ -10,19 +10,24 @@ import './index.css'
 import Cart from './components/Cart/Cart';
 import CartObjs from "./components/CartObjs/CartObjs";
 import CartObj from "./components/CartObj/CartObj";
+import Sets from "./presentable/Sets";
+import storeFactory from "./store/store";
+import {Provider} from "react-redux";
 
+const store = storeFactory();
 
 ReactDOM.render(
+    <Provider store={store}>
         <BrowserRouter>
         <div>
            <App/>
             <Switch>
                 <Route path="/" component={HomePage} exact/>
                 <Route path="/sets" component={
-                    (props) => <CartObjs
+                    (props) => <Sets
                         {...props}
                         component={Set}
-                        url={"sets"}/>
+                        />
                 } exact/>
                 <Route path="/milk" component={
                     (props) => <CartObjs
@@ -41,6 +46,7 @@ ReactDOM.render(
             <FloatingActionButton/>
         </div>
         </BrowserRouter>
+    </Provider>
 
     , document.getElementById('root'));
 

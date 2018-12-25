@@ -1,0 +1,6 @@
+export default {
+    SAVE_TO_CART: "SAVE_TO_CART",
+    KNOW_MORE: "KNOW_MORE",
+    RECEIVE_DATA: "RECEIVE",
+    WANT_DATA: "WANT_DATA"
+}
