@@ -17,4 +17,4 @@ export const sets = (state = {}, action) => {
             };
         default: return state
     }
-}
+};

@@ -7,12 +7,12 @@ import FloatingActionButton from './components/FAB/FAB';
 import Set from './components/Set/Set';
 import HomePage from './components/HomePage/HomePage';
 import './index.css'
-import Cart from './components/Cart/Cart';
 import CartObjs from "./components/CartObjs/CartObjs";
 import CartObj from "./components/CartObj/CartObj";
 import Sets from "./presentable/Sets";
 import storeFactory from "./store/store";
 import {Provider} from "react-redux";
+import Cart from "./presentable/Cart";
 
 const store = storeFactory();
 

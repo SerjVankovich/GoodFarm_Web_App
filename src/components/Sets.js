@@ -6,13 +6,13 @@ import Loading from "./Loading/Loading";
 
 class Sets extends React.Component {
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.wantData("http://localhost:3000/sets");
     }
 
     render() {
         const {sets, isFetching, isFetched, component, saveToCart} = this.props;
-        console.log(isFetching, isFetched);
+        console.log(isFetching, isFetched, sets, this.props);
         return (
             <div>
                 <Search findObjs={(name) => this.props.wantData(`http://localhost:3000/sets?name=${name}`)}/>

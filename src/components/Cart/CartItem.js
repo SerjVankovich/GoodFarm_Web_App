@@ -42,21 +42,18 @@ class CartItem extends React.Component {
     }
 
     render() {
-        const { set } = this.state;
-        if (!set.name) {
-            set.name = set.title
-        }
+        const { addMore, minusOne, set } = this.props;
         return (
             <Card className="panel">
                 <CardImg className="img-rounded" src="https://esh-derevenskoe.ru/image/cache/catalog/set/1-340x180.jpg" />
                 <CardTitle className="set-box-name">{set.name}</CardTitle>
                 <CardBody>
                     <Row>
-                    <Button className="btn-plus-minus" color="warning" onClick={this.handleMinus}>-</Button>
+                    <Button className="btn-plus-minus" color="warning" onClick={() => minusOne(set._id)}>-</Button>
                     <CardText className="count">
                         {set.count}
                     </CardText>
-                    <Button className="btn-plus-minus" color="warning" onClick={this.handlePlus}>+</Button>
+                    <Button className="btn-plus-minus" color="warning" onClick={() => addMore(set._id)}>+</Button>
                     <div className="set-box-price">{set.price * set.count} руб.</div>
                     </Row>
                     

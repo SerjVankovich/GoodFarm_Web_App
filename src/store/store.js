@@ -3,9 +3,10 @@ import thunk from "redux-thunk"
 import Constants from "../actionConstants"
 import {sets} from "../reducers/setsReducer";
 import {createLogger} from "redux-logger";
+import cart from "../reducers/cartReducer";
 
 const initState = {
-    cart: [],
+    cart: (localStorage.cartItems) ? JSON.parse(localStorage.getItem("cartItems")) : [] ,
     sets: {
         isFetching: false,
         isFetched: false,
@@ -20,19 +21,16 @@ const initState = {
 };
 
 const saver = store => next => action => {
-    let result;
+    let result = next(action);
     if (action.type === Constants.SAVE_TO_CART) {
-        result = next(action);
-        localStorage["cart"] = JSON.stringify(store.getState().cart);
+        localStorage["cartItems"] = JSON.stringify(store.getState().cart);
     }
-
-
     return result
 };
 
 const storeFactory = (initialState=initState) => {
-    const middleWare = applyMiddleware(thunk, createLogger());
-    return createStore(combineReducers({sets}), initialState, middleWare)
+    const middleWare = applyMiddleware(thunk, createLogger(), saver);
+    return createStore(combineReducers({sets, cart}), initialState, middleWare)
 };
 
 export default storeFactory
