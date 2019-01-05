@@ -11,7 +11,7 @@ class Sets extends React.Component {
     }
 
     render() {
-        const {sets, isFetching, isFetched, component, saveToCart} = this.props;
+        const {sets, isFetching, isFetched, component, saveToCart, toggleModal} = this.props;
         console.log(isFetching, isFetched, sets, this.props);
         return (
             <div>
@@ -23,7 +23,7 @@ class Sets extends React.Component {
                         <Row>
                             {sets.map((obj, index) => (
                                 <Col key={index} md="4" sm="6" xs="12">
-                                    {React.createElement(component, {saveToCart: saveToCart, obj: obj}, this)}
+                                    {React.createElement(component, {saveToCart: saveToCart, obj: obj, toggleModal: toggleModal}, this)}
                                 </Col>
                             ))}
                         </Row>

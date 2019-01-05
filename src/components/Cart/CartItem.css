@@ -92,6 +92,16 @@
 	top:1px;
 }
 
+.btn-delete {
+    background-color: #ff0911;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    color: white;
+    font-size: 1em;
+}
+
 .btn-plus-minus {
     background-color: #FFA726;
     border-radius: 10px;
@@ -103,6 +113,15 @@
 
 .btn-plus-minus:hover {
 	background-color:#e6c700;
+}
+
+.btn-delete:hover {
+    background-color: #d60911;
+}
+
+.btn-delete:active {
+    position: relative;
+    top: 1px;
 }
 
 .btn-plus-minus:active {

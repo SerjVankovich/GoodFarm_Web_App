@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import SetsUI from "../components/Sets"
-import {saveToCart} from "../actions/cartAction";
-import {getData} from "../actions/listAction";
+import {saveToCart} from "../actions/cartActions";
+import {getData, knowMore} from "../actions/listActions";
 
 const Sets = connect(
     state => ({
@@ -13,6 +13,7 @@ const Sets = connect(
     dispatch => ({
         saveToCart(item) { dispatch(saveToCart(item)) },
         wantData(url) { dispatch(getData(url))},
+        toggleModal(id) { dispatch(knowMore(id))}
     })
 )(SetsUI);
 

@@ -15,6 +15,18 @@ export const sets = (state = {}, action) => {
                 isFetched: true,
                 data: action.data
             };
+        case Constants.KNOW_MORE:
+            return {
+                isFetching: false,
+                isFetched: true,
+                data: state.data.map(item => {
+                    if (item._id === action.id) {
+                        item.modal = !item.modal
+                    }
+
+                    return item
+                })
+            };
         default: return state
     }
 };

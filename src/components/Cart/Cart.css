@@ -19,7 +19,7 @@
 	display:block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
+	font-family: Arial, serif;
 	font-size:20px;
     padding:10px 15px;
     margin-left: 5px;
@@ -33,4 +33,10 @@
 .completeOrder:active {
 	position:relative;
 	top:1px;
+}
+
+.sumPrice {
+	background-color: #5cb85c;
+	border-radius: 10px;
+	margin-left: 10px;
 }

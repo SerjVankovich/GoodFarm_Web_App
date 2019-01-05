@@ -42,14 +42,14 @@ class CartItem extends React.Component {
     }
 
     render() {
-        const { addMore, minusOne, set } = this.props;
+        const { addMore, minusOne, set, deleteOne } = this.props;
         return (
             <Card className="panel">
                 <CardImg className="img-rounded" src="https://esh-derevenskoe.ru/image/cache/catalog/set/1-340x180.jpg" />
                 <CardTitle className="set-box-name">{set.name}</CardTitle>
                 <CardBody>
                     <Row>
-                    <Button className="btn-plus-minus" color="warning" onClick={() => minusOne(set._id)}>-</Button>
+                    <Button className={ (set.count !== 1) ? "btn-plus-minus" : "btn-delete" } color="warning" onClick={() => (set.count !== 1) ? minusOne(set._id) : deleteOne(set._id)}>{ (set.count !== 1) ? "-" : "del" }</Button>
                     <CardText className="count">
                         {set.count}
                     </CardText>
